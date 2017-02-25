@@ -6,8 +6,10 @@ GameOfLife::GameOfLife() {
   m_grid.resize(m_rows);
   std::vector<std::vector<char>>::iterator it;
   // con_rowIterator it;
+
   for (it = m_grid.begin(); it != m_grid.end(); ++it) {
     it->resize(m_cols);
+    std::for_each(it->begin(), it->end(), [](char &n) { n = '_'; });
   }
 }
 

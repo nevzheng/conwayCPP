@@ -32,3 +32,6 @@
 *.app
 
 CMakeFiles/*
+
+#project bins
+conwayCPP

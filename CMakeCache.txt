@@ -128,7 +128,7 @@ CMAKE_OSX_DEPLOYMENT_TARGET:STRING=
 CMAKE_OSX_SYSROOT:STRING=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Project
+CMAKE_PROJECT_NAME:STATIC=conwayCPP
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib
@@ -180,10 +180,10 @@ CMAKE_STRIP:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/Xcode
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Value Computed by CMake
-Project_BINARY_DIR:STATIC=/Users/nevinzheng/conwayCPP
+conwayCPP_BINARY_DIR:STATIC=/Users/nevinzheng/conwayCPP
 
 //Value Computed by CMake
-Project_SOURCE_DIR:STATIC=/Users/nevinzheng/conwayCPP
+conwayCPP_SOURCE_DIR:STATIC=/Users/nevinzheng/conwayCPP
 
 
 ########################

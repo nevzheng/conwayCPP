@@ -110,6 +110,73 @@ depend:
 	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+#=============================================================================
+# Target rules for targets named conwayCPP
+
+# Build rule for target.
+conwayCPP: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 conwayCPP
+.PHONY : conwayCPP
+
+# fast build rule for target.
+conwayCPP/fast:
+	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/build
+.PHONY : conwayCPP/fast
+
+src/GameOfLife.o: src/GameOfLife.cpp.o
+
+.PHONY : src/GameOfLife.o
+
+# target to build an object file
+src/GameOfLife.cpp.o:
+	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/GameOfLife.cpp.o
+.PHONY : src/GameOfLife.cpp.o
+
+src/GameOfLife.i: src/GameOfLife.cpp.i
+
+.PHONY : src/GameOfLife.i
+
+# target to preprocess a source file
+src/GameOfLife.cpp.i:
+	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/GameOfLife.cpp.i
+.PHONY : src/GameOfLife.cpp.i
+
+src/GameOfLife.s: src/GameOfLife.cpp.s
+
+.PHONY : src/GameOfLife.s
+
+# target to generate assembly for a file
+src/GameOfLife.cpp.s:
+	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/GameOfLife.cpp.s
+.PHONY : src/GameOfLife.cpp.s
+
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -118,6 +185,13 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... conwayCPP"
+	@echo "... src/GameOfLife.o"
+	@echo "... src/GameOfLife.i"
+	@echo "... src/GameOfLife.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 
