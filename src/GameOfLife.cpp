@@ -33,7 +33,9 @@ std::ostream &operator<<(std::ostream &out, GameOfLife const &inst) {
 
   for (int i = 0; i < dims.first; ++i) {
     for (int j = 0; j < dims.second; ++j) {
-      out << (gd.at(0).at(0) == (char)0 ? 'x' : 'o') << " ";
+      char t = ((gd.at(i).at(j)) ? 'o' : 'x');
+      //   std::cout << (int)t << "\n";
+      out << t << " ";
     }
     out << "\n";
   }
@@ -47,14 +49,18 @@ std::pair<int, int> GameOfLife::get_dimensions() {
 }
 
 void ::GameOfLife::randomInit() {
-  std::srand(std::time(0));
+  // CHANGE BY REFERENCE !!!!!!;
+  auto gd = &m_grid;
+  // out << inst.toString();
+  auto dims = std::make_pair(m_rows, m_cols);
 
-  std::vector<std::vector<char>>::iterator it;
-  // con_rowIterator it;
-
-  for (it = m_grid.begin(); it != m_grid.end(); ++it) {
-    it->resize(m_cols);
-    std::for_each(it->begin(), it->end(),
-                  [](char &n) { n = (std::rand() % 2); });
+  for (int i = 0; i < dims.first; ++i) {
+    for (int j = 0; j < dims.second; ++j) {
+      //   gd.at(i).at(j) = (char)(rand() % 2);
+      char t = (char)(rand() % 2);
+      //   std::cout << "selected " << t << "\n";
+      gd->at(i).at(j) = t; // (char)(rand() % 2);
+      //   std::cout << "assignment " << gd->at(i).at(j) << "\n \n ";
+    }
   }
 }

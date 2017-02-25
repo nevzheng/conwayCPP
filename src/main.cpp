@@ -5,15 +5,15 @@
 #include "GameOfLife.hpp"
 
 int main(int argc, char *argv[]) {
+  std::srand(std::time(NULL));
 
-  std::srand(std::time(0));
-
-  int x, y, iters;
-  std::cout << "Welcome to Conway's" << std::endl;
-  std::cout << "Please enter (x,y,iterations)" << std::endl;
-  std::cin >> x;
-  std::cin >> y;
-  std::cin >> iters;
+  //
+  // int x, y, iters;
+  // std::cout << "Welcome to Conway's" << std::endl;
+  // std::cout << "Please enter (x,y,iterations)" << std::endl;
+  // std::cin >> x;
+  // std::cin >> y;
+  // std::cin >> iters;
 
   // create new game of life object
   // auto game = GameOfLife::GameOfLife(x,y);
@@ -39,5 +39,17 @@ int main(int argc, char *argv[]) {
 
   std::cout << game2 << std::endl;
   ////
+
+  // Test randomInit
+  auto game3 = GameOfLife::GameOfLife();
+  game3.randomInit();
+
+  auto gd3 = game3.get_conwayGrid();
+
+  // this access pattern is weird
+  std::cout << (int)gd3->at(0).at(0) << std::endl;
+
+  std::cout << game3 << std::endl;
+
   return 0;
 }
