@@ -1,0 +1,2 @@
+/Users/nevinzheng/conwayCPP/CMakeFiles/rebuild_cache.dir
+/Users/nevinzheng/conwayCPP/CMakeFiles/edit_cache.dir
