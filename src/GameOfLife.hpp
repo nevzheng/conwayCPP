@@ -5,8 +5,6 @@
 #include <vector>
 
 typedef std::vector<std::vector<char>> conwayGrid;
-// typedef std::vector<std::vector<char>>::iterator con_rowIterator;
-// typedef std::vector<char>::iterator con_colIterator;
 
 class GameOfLife {
 private:

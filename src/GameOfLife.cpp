@@ -28,7 +28,6 @@ GameOfLife::GameOfLife(int rows, int cols) {
 
 std::ostream &operator<<(std::ostream &out, GameOfLife const &inst) {
   auto gd = inst.m_grid;
-  // out << inst.toString();
   auto dims = std::make_pair(inst.m_rows, inst.m_cols);
 
   for (int i = 0; i < dims.first; ++i) {
@@ -51,8 +50,6 @@ std::pair<int, int> GameOfLife::get_dimensions() {
 void ::GameOfLife::randomInit() {
   // CHANGE BY REFERENCE !!!!!!;
   // auto gd = &m_grid;
-  // out << inst.toString();
-  // auto dims = std::make_pair(m_rows, m_cols);
 
   for (auto it = m_grid.begin(); it != m_grid.end(); ++it) {
     it->resize(m_cols);
