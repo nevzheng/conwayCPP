@@ -31,5 +31,8 @@ public:
   // GameOfLife &operator=(const GameOfLife &other) = default;
   // GameOfLife &operator=(GameOfLife &&other) = default;
 
+  // printing
   friend std::ostream &operator<<(std::ostream &out, GameOfLife const &inst);
+
+  void randomInit();
 };
