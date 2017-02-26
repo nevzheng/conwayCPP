@@ -42,5 +42,6 @@ public:
   static void unsetCell(char &cell);
   static char getState(char &cell);
   static char getNeighborCount(char &cell);
+  static char countNeighbors(conwayGrid m_grid, int x, int y);
   static void setNeighborCount(char &cell, char count);
 };

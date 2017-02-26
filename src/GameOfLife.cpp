@@ -32,7 +32,7 @@ std::ostream &operator<<(std::ostream &out, GameOfLife const &inst) {
 
   for (int i = 0; i < dims.first; ++i) {
     for (int j = 0; j < dims.second; ++j) {
-      char t = (GameOfLife::getState((gd[i][j])) ? 'i' : '.');
+      char t = (GameOfLife::getState((gd[i][j])) ? 'o' : '.');
       //   std::cout << (int)t << "\n";
       out << t << " ";
     }
@@ -62,16 +62,14 @@ void GameOfLife::randomInit() {
 
   for (int i = 1; i < m_rows - 1; ++i) {
     for (int j = 1; j < m_cols - 1; ++j) {
-      char count = GameOfLife::getState(m_grid[i + 1][j]) +
-                   GameOfLife::getState(m_grid[i][j + 1]) +
-                   GameOfLife::getState(m_grid[i - 1][j]) +
-                   GameOfLife::getState(m_grid[i][j - 1]);
-      std::cout << (int)count << ":" << (int)GameOfLife::getState(m_grid[i][j])
-                << ' ';
+      char count = GameOfLife::countNeighbors(m_grid, i, j);
+      //   std::cout << (int)count << ":" <<
+      //   (int)GameOfLife::getState(m_grid[i][j])
+      // << ' ';
       GameOfLife::setNeighborCount(m_grid[i][j], count);
       // std::cout << (int)count << "\n";
     }
-    std::cout << "\n";
+    // std::cout << "\n";
   }
   // std::for_each(it->begin(), it->end(),
   //   [](char &n) { n = (char)(rand() % 2); });
@@ -81,11 +79,8 @@ void GameOfLife::iterateGrid() {
   conwayGrid n_grid = m_grid;
   for (int i = 1; i < m_rows - 1; ++i) {
     for (int j = 1; j < m_cols - 1; ++j) {
-      char count = GameOfLife::getState(m_grid[i + 1][j]) +
-                   GameOfLife::getState(m_grid[i][j + 1]) +
-                   GameOfLife::getState(m_grid[i - 1][j]) +
-                   GameOfLife::getState(m_grid[i][j - 1]);
-      std::cout << (int)count << " ";
+      char count = GameOfLife::countNeighbors(m_grid, i, j);
+      //   std::cout << (int)count << " ";
       GameOfLife::setNeighborCount(n_grid[i][j], count);
       if (GameOfLife::getState(m_grid[i][j])) {
         if (count < 2 || count > 3) {
@@ -101,7 +96,7 @@ void GameOfLife::iterateGrid() {
 
       // std::cout << (int)count << "\n";
     }
-    std::cout << '\n';
+    // std::cout << '\n';
   }
   m_grid = n_grid;
 }
@@ -115,7 +110,14 @@ char GameOfLife::getNeighborCount(char &cell) {
   char copy = cell;
   return (copy >> 1) & (0x0F);
 }
-// fix this!!!!! Doesn work
 void GameOfLife::setNeighborCount(char &cell, char count) {
   cell = ((count << 1) + getState(cell));
+}
+
+char GameOfLife::countNeighbors(conwayGrid m_grid, int x, int y) {
+
+  return GameOfLife::getState(m_grid[x + 1][y]) +
+         GameOfLife::getState(m_grid[x][y + 1]) +
+         GameOfLife::getState(m_grid[x - 1][y]) +
+         GameOfLife::getState(m_grid[x][y - 1]);
 }
