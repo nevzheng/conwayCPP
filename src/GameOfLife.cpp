@@ -57,10 +57,10 @@ void GameOfLife::randomInit() {
     }
     for (int i = 1; i < m_rows - 1; ++i) {
       for (int j = 1; j < m_cols - 1; ++j) {
-        char count = GameOfLife::getNeighborCount(m_grid[i + 1][j]) +
-                     GameOfLife::getNeighborCount(m_grid[i][j + 1]) +
-                     GameOfLife::getNeighborCount(m_grid[i - 1][j]) +
-                     GameOfLife::getNeighborCount(m_grid[i][j - 1]);
+        char count = GameOfLife::getState(m_grid[i + 1][j]) +
+                     GameOfLife::getState(m_grid[i][j + 1]) +
+                     GameOfLife::getState(m_grid[i - 1][j]) +
+                     GameOfLife::getState(m_grid[i][j - 1]);
         GameOfLife::setNeighborCount(m_grid[i][j], count);
         // std::cout << (int)count << "\n";
       }
@@ -74,10 +74,10 @@ void GameOfLife::iterateGrid() {
   conwayGrid n_grid = m_grid;
   for (int i = 01; i < m_rows - 1; ++i) {
     for (int j = 1; j < m_cols - 1; ++j) {
-      char count = GameOfLife::getState(m_grid[i + 1][j]) +
-                   GameOfLife::getState(m_grid[i][j + 1]) +
-                   GameOfLife::getState(m_grid[i - 1][j]) +
-                   GameOfLife::getState(m_grid[i][j - 1]);
+      char count = GameOfLife::getNeighborCount(m_grid[i + 1][j]) +
+                   GameOfLife::getNeighborCount(m_grid[i][j + 1]) +
+                   GameOfLife::getNeighborCount(m_grid[i - 1][j]) +
+                   GameOfLife::getNeighborCount(m_grid[i][j - 1]);
       GameOfLife::setNeighborCount(n_grid[i][j], count);
       if (GameOfLife::getState(m_grid[i][j])) {
         if (count < 2 || count > 3) {
