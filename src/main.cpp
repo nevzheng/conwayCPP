@@ -16,9 +16,9 @@ int main(int argc, char *argv[]) {
   // std::cin >> iters;
 
   // create new game of life object
-  // auto game = GameOfLife::GameOfLife(x,y);
+  // auto game = GameOfLife::GameOfLife(x, y);
   // create new game of life object
-  /////
+  ///
   auto game = GameOfLife::GameOfLife();
 
   auto gd = game.get_conwayGrid();
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
   ////
 
   // Test randomInit
-  auto game3 = GameOfLife::GameOfLife(50, 50);
+  auto game3 = GameOfLife::GameOfLife(4, 4);
   // auto game3 = GameOfLife::GameOfLife();
   game3.randomInit();
 
@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
             << "\n";
   std::cout << game3 << std::endl;
 
-  for (int i = 0; i < 50; ++i) {
+  for (int i = 0; i < 1; ++i) {
     game3.iterateGrid();
     std::cout << game3 << std::endl;
   }
@@ -63,6 +63,29 @@ int main(int argc, char *argv[]) {
   std::cout << (int)GameOfLife::getNeighborCount(t) << '\n';
   GameOfLife::setNeighborCount(t, char(5));
   std::cout << (int)GameOfLife::getNeighborCount(t) << '\n';
+
+  std::cout << "Working" << std::endl;
+  conwayGrid test_grid{{0, 0, 0, 0, 0},
+                       {0, 0, 1, 0, 0},
+                       {0, 0, 3, 0, 0},
+                       {0, 0, 1, 0, 0},
+                       {0, 0, 0, 0, 0}};
+
+  for (auto &arr : test_grid) {
+    for (auto &x : arr) {
+      std::cout << x << "\n";
+    }
+  }
+
+  auto gd5 = GameOfLife(test_grid);
+
+  std::cout << "Working" << std::endl;
+  std::cout << gd5 << std::endl;
+
+  for (int i = 0; i < 10; ++i) {
+    gd5.iterateGrid();
+    std::cout << gd5 << std::endl;
+  }
 
   return 0;
 }

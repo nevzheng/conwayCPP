@@ -2,6 +2,7 @@
 
 #include <string>
 #include <utility>
+
 #include <vector>
 
 typedef std::vector<std::vector<char>> conwayGrid;
@@ -16,6 +17,7 @@ public:
   // Constructors
   GameOfLife();
   GameOfLife(int m_rows, int m_cols);
+  GameOfLife(conwayGrid m_grid);
 
   // destructor
   ~GameOfLife() = default;
@@ -24,7 +26,7 @@ public:
   conwayGrid *get_conwayGrid();
   std::pair<int, int> get_dimensions();
 
-  // GameOfLife(const GameOfLife &other) = default;
+  GameOfLife(const GameOfLife &other) = default;
   // GameOfLife(GameOfLife &&other) = default;
   // GameOfLife &operator=(const GameOfLife &other) = default;
   // GameOfLife &operator=(GameOfLife &&other) = default;
@@ -36,11 +38,10 @@ public:
 
   void iterateGrid();
 
-  // bitwise operators
-  // to do think about inlining these
   static void setCell(char &cell);
   static void unsetCell(char &cell);
   static char getState(char &cell);
+
   static char getNeighborCount(char &cell);
   static char countNeighbors(conwayGrid m_grid, int x, int y);
   static void setNeighborCount(char &cell, char count);

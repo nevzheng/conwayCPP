@@ -78,6 +78,17 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/local/Cellar/cmake/3.7.2/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/nevinzheng/conwayCPP/CMakeFiles /Users/nevinzheng/conwayCPP/CMakeFiles/progress.marks
@@ -177,6 +188,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/parseFile.o: src/parseFile.cpp.o
+
+.PHONY : src/parseFile.o
+
+# target to build an object file
+src/parseFile.cpp.o:
+	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/parseFile.cpp.o
+.PHONY : src/parseFile.cpp.o
+
+src/parseFile.i: src/parseFile.cpp.i
+
+.PHONY : src/parseFile.i
+
+# target to preprocess a source file
+src/parseFile.cpp.i:
+	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/parseFile.cpp.i
+.PHONY : src/parseFile.cpp.i
+
+src/parseFile.s: src/parseFile.cpp.s
+
+.PHONY : src/parseFile.s
+
+# target to generate assembly for a file
+src/parseFile.cpp.s:
+	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/parseFile.cpp.s
+.PHONY : src/parseFile.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -185,6 +223,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test"
 	@echo "... conwayCPP"
 	@echo "... src/GameOfLife.o"
 	@echo "... src/GameOfLife.i"
@@ -192,6 +231,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/parseFile.o"
+	@echo "... src/parseFile.i"
+	@echo "... src/parseFile.s"
 .PHONY : help
 
 

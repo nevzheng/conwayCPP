@@ -25,7 +25,13 @@ GameOfLife::GameOfLife(int rows, int cols) {
     std::for_each(it->begin(), it->end(), [](char &n) { n = (char)0; });
   }
 }
-
+GameOfLife::GameOfLife(conwayGrid grid) {
+  m_rows = grid.size();
+  std::cout << m_rows << "\n";
+  m_cols = grid[0].size();
+  std::cout << m_rows << "\n";
+  m_grid = grid;
+}
 std::ostream &operator<<(std::ostream &out, GameOfLife const &inst) {
   auto gd = inst.m_grid;
   auto dims = std::make_pair(inst.m_rows, inst.m_cols);
@@ -82,6 +88,7 @@ void GameOfLife::iterateGrid() {
       char count = GameOfLife::countNeighbors(m_grid, i, j);
       //   std::cout << (int)count << " ";
       GameOfLife::setNeighborCount(n_grid[i][j], count);
+
       if (GameOfLife::getState(m_grid[i][j])) {
         if (count < 2 || count > 3) {
           GameOfLife::unsetCell(n_grid[i][j]);
@@ -119,5 +126,9 @@ char GameOfLife::countNeighbors(conwayGrid m_grid, int x, int y) {
   return GameOfLife::getState(m_grid[x + 1][y]) +
          GameOfLife::getState(m_grid[x][y + 1]) +
          GameOfLife::getState(m_grid[x - 1][y]) +
+         GameOfLife::getState(m_grid[x - 1][y - 1]) +
+         GameOfLife::getState(m_grid[x - 1][y + 1]) +
+         GameOfLife::getState(m_grid[x + 1][y + 1]) +
+         GameOfLife::getState(m_grid[x + 1][y - 1]) +
          GameOfLife::getState(m_grid[x][y - 1]);
 }
