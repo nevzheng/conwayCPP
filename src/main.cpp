@@ -59,5 +59,10 @@ int main(int argc, char *argv[]) {
     std::cout << game3 << std::endl;
   }
 
+  char t = 0x15;
+  std::cout << (int)GameOfLife::getNeighborCount(t) << '\n';
+  GameOfLife::setNeighborCount(t, char(5));
+  std::cout << (int)GameOfLife::getNeighborCount(t) << '\n';
+
   return 0;
 }

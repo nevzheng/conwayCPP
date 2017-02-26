@@ -106,5 +106,6 @@ inline char GameOfLife::getNeighborCount(char &cell) {
   return (copy >> 1) & (0x0F);
 }
 inline void GameOfLife::setNeighborCount(char &cell, char count) {
-  cell |= (count << 1) | (cell | 1);
+  cell = (count << 1);
+  cell |= getState(cell);
 }
