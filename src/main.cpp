@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
 
   // Test randomInit
   // auto game3 = GameOfLife::GameOfLife(50, 50);
-  auto game3 = GameOfLife::GameOfLife(5, 5);
+  auto game3 = GameOfLife::GameOfLife();
   game3.randomInit();
 
   auto gd3 = game3.get_conwayGrid();
@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
             << "\n";
   std::cout << game3 << std::endl;
 
-  for (int i = 0; i < 3; ++i) {
+  for (int i = 0; i < 8; ++i) {
     game3.iterateGrid();
     std::cout << game3 << std::endl;
   }
