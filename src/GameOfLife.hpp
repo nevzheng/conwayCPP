@@ -33,4 +33,10 @@ public:
   friend std::ostream &operator<<(std::ostream &out, GameOfLife const &inst);
 
   void randomInit();
+
+  void iterateGrid();
+
+  // bitwise operators
+  inline static void setCell();
+  inline static void unsetCell();
 };
