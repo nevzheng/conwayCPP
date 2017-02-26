@@ -79,12 +79,48 @@ int main(int argc, char *argv[]) {
 
   auto gd5 = GameOfLife(test_grid);
 
-  std::cout << "Working" << std::endl;
+  std::cout << "Octagon" << std::endl;
   std::cout << gd5 << std::endl;
 
   for (int i = 0; i < 10; ++i) {
     gd5.iterateGrid();
     std::cout << gd5 << std::endl;
+  }
+
+  std::cout << "Working" << std::endl;
+  // commented for pattern and editing
+  // conwayGrid test_grid{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+  //                      {0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+  //                      {0, 0, 0, 1, 0, 0, 1, 0, 0, 0},
+  //                      {0, 0, 1, 0, 0, 0, 0, 1, 0, 0},
+  //                      {0, 1, 0, 0, 0, 0, 0, 0, 1, 0},
+  //                      {0, 1, 0, 0, 0, 0, 0, 0, 1, 0},
+  //                      {0, 0, 1, 0, 0, 0, 0, 1, 0, 0},
+  //                      {0, 0, 0, 1, 0, 0, 1, 0, 0, 0},
+  //                      {0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+  //                      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+
+  conwayGrid test_grid2{
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 1, 0, 0, 0, 0},
+      {0, 0, 0, 1, 0, 0, 1, 0, 0, 0}, {0, 0, 1, 0, 0, 0, 0, 1, 0, 0},
+      {0, 1, 0, 0, 0, 0, 0, 0, 1, 0}, {0, 1, 0, 0, 0, 0, 0, 0, 1, 0},
+      {0, 0, 1, 0, 0, 0, 0, 1, 0, 0}, {0, 0, 0, 1, 0, 0, 1, 0, 0, 0},
+      {0, 0, 0, 0, 1, 1, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+
+  for (auto &arr : test_grid2) {
+    for (auto &x : arr) {
+      std::cout << x << "\n";
+    }
+  }
+
+  auto gd6 = GameOfLife(test_grid2);
+
+  std::cout << "Working" << std::endl;
+  std::cout << gd6 << std::endl;
+
+  for (int i = 0; i < 10; ++i) {
+    gd6.iterateGrid();
+    std::cout << gd6 << std::endl;
   }
 
   return 0;
