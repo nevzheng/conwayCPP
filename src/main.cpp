@@ -41,7 +41,8 @@ int main(int argc, char *argv[]) {
   ////
 
   // Test randomInit
-  auto game3 = GameOfLife::GameOfLife();
+  // auto game3 = GameOfLife::GameOfLife(50, 50);
+  auto game3 = GameOfLife::GameOfLife(5, 5);
   game3.randomInit();
 
   auto gd3 = game3.get_conwayGrid();
@@ -49,7 +50,14 @@ int main(int argc, char *argv[]) {
   // this access pattern is weird
   std::cout << (int)gd3->at(0).at(0) << std::endl;
 
+  std::cout << "Testing"
+            << "\n";
   std::cout << game3 << std::endl;
+
+  for (int i = 0; i < 3; ++i) {
+    game3.iterateGrid();
+    std::cout << game3 << std::endl;
+  }
 
   return 0;
 }

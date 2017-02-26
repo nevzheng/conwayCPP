@@ -37,6 +37,9 @@ public:
   void iterateGrid();
 
   // bitwise operators
-  inline static void setCell();
-  inline static void unsetCell();
+  static inline void setCell(char &cell);
+  static inline void unsetCell(char &cell);
+  static inline char getState(char &cell);
+  static inline char getNeighborCount(char &cell);
+  static inline void setNeighborCount(char &cell, char count);
 };
