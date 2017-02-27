@@ -56,6 +56,39 @@ CMAKE_BINARY_DIR = /Users/nevinzheng/conwayCPP
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/local/Cellar/cmake/3.7.2/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/local/Cellar/cmake/3.7.2/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/local/Cellar/cmake/3.7.2/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,17 +110,6 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/local/Cellar/cmake/3.7.2/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -122,98 +144,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named conwayCPP
+# Target rules for targets named conway
 
 # Build rule for target.
-conwayCPP: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 conwayCPP
-.PHONY : conwayCPP
+conway: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 conway
+.PHONY : conway
 
 # fast build rule for target.
-conwayCPP/fast:
-	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/build
-.PHONY : conwayCPP/fast
-
-src/GameOfLife.o: src/GameOfLife.cpp.o
-
-.PHONY : src/GameOfLife.o
-
-# target to build an object file
-src/GameOfLife.cpp.o:
-	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/GameOfLife.cpp.o
-.PHONY : src/GameOfLife.cpp.o
-
-src/GameOfLife.i: src/GameOfLife.cpp.i
-
-.PHONY : src/GameOfLife.i
-
-# target to preprocess a source file
-src/GameOfLife.cpp.i:
-	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/GameOfLife.cpp.i
-.PHONY : src/GameOfLife.cpp.i
-
-src/GameOfLife.s: src/GameOfLife.cpp.s
-
-.PHONY : src/GameOfLife.s
-
-# target to generate assembly for a file
-src/GameOfLife.cpp.s:
-	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/GameOfLife.cpp.s
-.PHONY : src/GameOfLife.cpp.s
-
-src/main.o: src/main.cpp.o
-
-.PHONY : src/main.o
-
-# target to build an object file
-src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
-
-src/main.i: src/main.cpp.i
-
-.PHONY : src/main.i
-
-# target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
-
-src/main.s: src/main.cpp.s
-
-.PHONY : src/main.s
-
-# target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
-
-src/parseFile.o: src/parseFile.cpp.o
-
-.PHONY : src/parseFile.o
-
-# target to build an object file
-src/parseFile.cpp.o:
-	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/parseFile.cpp.o
-.PHONY : src/parseFile.cpp.o
-
-src/parseFile.i: src/parseFile.cpp.i
-
-.PHONY : src/parseFile.i
-
-# target to preprocess a source file
-src/parseFile.cpp.i:
-	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/parseFile.cpp.i
-.PHONY : src/parseFile.cpp.i
-
-src/parseFile.s: src/parseFile.cpp.s
-
-.PHONY : src/parseFile.s
-
-# target to generate assembly for a file
-src/parseFile.cpp.s:
-	$(MAKE) -f CMakeFiles/conwayCPP.dir/build.make CMakeFiles/conwayCPP.dir/src/parseFile.cpp.s
-.PHONY : src/parseFile.cpp.s
+conway/fast:
+	$(MAKE) -f src/CMakeFiles/conway.dir/build.make src/CMakeFiles/conway.dir/build
+.PHONY : conway/fast
 
 # Help Target
 help:
@@ -221,19 +162,12 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... install/local"
+	@echo "... install"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... test"
-	@echo "... conwayCPP"
-	@echo "... src/GameOfLife.o"
-	@echo "... src/GameOfLife.i"
-	@echo "... src/GameOfLife.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
-	@echo "... src/parseFile.o"
-	@echo "... src/parseFile.i"
-	@echo "... src/parseFile.s"
+	@echo "... conway"
 .PHONY : help
 
 

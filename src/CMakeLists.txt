@@ -1,3 +1,4 @@
-add_executable(conwayCpp src/main.cpp)
-target_link_libraries(conwayCPP ${SDL2_LIBRARY})
-install(TARGETS conwayCPP RUNTIME DESTINATION ${BIN_DIR})
+project(conwayCPP)
+add_executable(conway main.cpp)
+target_link_libraries(conway ${SDL2_LIBRARY})
+install(TARGETS conway RUNTIME DESTINATION ${BIN_DIR})
