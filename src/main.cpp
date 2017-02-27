@@ -3,5 +3,6 @@
 #include <string>
 
 #include "cleanup.hpp"
+#include "res_path.h"
 
 int main(int, char **) {}
