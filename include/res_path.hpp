@@ -1,7 +1,7 @@
 #ifndef RES_PATH_H
 #define RES_PATH_H
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <iostream>
 #include <string>
 

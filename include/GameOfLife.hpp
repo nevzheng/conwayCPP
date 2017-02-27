@@ -1,8 +1,8 @@
 #pragma once
 
+#include <iostream>
 #include <string>
 #include <utility>
-
 #include <vector>
 
 typedef std::vector<std::vector<char>> conwayGrid;

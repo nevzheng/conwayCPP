@@ -1,9 +1,9 @@
 #ifndef CLEANUP_H
 #define CLEANUP_H
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
+#include <iostream>
 #include <utility>
-
 /*
  * Recurse through the list of arguments to clean up, cleaning up
  * the first one in the list each iteration.
