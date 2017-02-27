@@ -144,17 +144,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named conway
+# Target rules for targets named conwayCPP
 
 # Build rule for target.
-conway: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 conway
-.PHONY : conway
+conwayCPP: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 conwayCPP
+.PHONY : conwayCPP
 
 # fast build rule for target.
-conway/fast:
-	$(MAKE) -f src/CMakeFiles/conway.dir/build.make src/CMakeFiles/conway.dir/build
-.PHONY : conway/fast
+conwayCPP/fast:
+	$(MAKE) -f src/CMakeFiles/conwayCPP.dir/build.make src/CMakeFiles/conwayCPP.dir/build
+.PHONY : conwayCPP/fast
 
 # Help Target
 help:
@@ -167,7 +167,7 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... conway"
+	@echo "... conwayCPP"
 .PHONY : help
 
 

@@ -31,6 +31,7 @@
 *.out
 *.app
 
+.DS_Store
 
 bin/*
 
@@ -45,5 +46,6 @@ Testing
 Makefile
 install_manifest.txt
 CTestTestfile.cmake
+Makefile
 
 # project bins

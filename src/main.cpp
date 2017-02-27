@@ -1,10 +1,12 @@
+#include <SDL2/SDL.h>
+
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
 
 #include "GameOfLife.hpp"
 
-int main(int argc, char *argv[]) {
+int main(int, char **) {
   std::srand(std::time(NULL));
 
   //

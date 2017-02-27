@@ -1,4 +1,2 @@
-project(conwayCPP)
-add_executable(conway main.cpp)
-target_link_libraries(conway ${SDL2_LIBRARY})
-install(TARGETS conway RUNTIME DESTINATION ${BIN_DIR})
+add_executable (conwayCPP main.cpp GameOfLife.cpp)
+install(TARGETS conwayCPP RUNTIME DESTINATION ${BIN_DIR})
