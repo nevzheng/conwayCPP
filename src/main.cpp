@@ -1,141 +1,140 @@
 #include <SDL2/SDL.h>
 #include <iostream>
-#include <string>
 
 #include "GameOfLife.hpp"
-#include "cleanup.hpp"
-#include "res_path.hpp"
+
+int posX = 100;
+int posY = 100;
+int sizeX = 1000;
+int sizeY = 1000;
+
+SDL_Window *window;
+SDL_Renderer *renderer;
+
+bool InitEverything();
+bool InitSDL();
+bool CreateWindow();
+bool CreateRenderer();
+void SetupRenderer();
+void Cleanup();
+
+void Render(conwayGrid &gd);
+
+void RunGame();
+
+SDL_Rect playerPos;
 
 int main(int, char **) {
-  bool quit = false;
-  SDL_Event event;
+  if (!InitEverything())
+    return -1;
 
-  SDL_Init(SDL_INIT_VIDEO);
+  // Initlaize our playe
+  playerPos.x = 20;
+  playerPos.y = 20;
+  playerPos.w = 99;
+  playerPos.h = 99;
 
-  SDL_Window *window =
-      SDL_CreateWindow("SDL2 Pixel Drawing", SDL_WINDOWPOS_UNDEFINED,
-                       SDL_WINDOWPOS_UNDEFINED, 640, 480, 0);
-  SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
-  SDL_Texture *texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888,
-                                           SDL_TEXTUREACCESS_STATIC, 640, 480);
-  Uint32 *pixels = new Uint32[640 * 480];
-  memset(pixels, 0, 640 * 480 * sizeof(Uint32));
+  RunGame();
+}
 
-  while (!quit) {
-    SDL_UpdateTexture(texture, NULL, pixels, 640 * sizeof(Uint32));
+void Cleanup() {
+  SDL_DestroyWindow(window);
+  SDL_DestroyRenderer(renderer);
+}
+void Render(conwayGrid &gd) {
+  // iterate though the ten subblocks
+  // Clear the window and make it all green
+  SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+  SDL_RenderClear(renderer);
 
-    SDL_WaitEvent(&event);
-    switch (event.type) {
-    case SDL_QUIT:
-      quit = true;
-      break;
+  for (int i = 0; i < 10; i++) {
+    for (int j = 0; j < 10; j++) {
+      auto tmp = gd.at(i).at(j);
+      if (tmp) {
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+      } else {
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+      }
+      SDL_RenderFillRect(renderer, &playerPos);
+
+      playerPos.y = (playerPos.y + 100) % 1000;
     }
-    SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, texture, NULL, NULL);
-    SDL_RenderPresent(renderer);
+    playerPos.x = (playerPos.x + 100) % 1000;
   }
 
-  SDL_DestroyWindow(window);
-  delete[] pixels;
-  SDL_DestroyTexture(texture);
-  SDL_DestroyRenderer(renderer);
-
-  SDL_Quit();
-
-  return 0;
+  // SDL_RenderPresent(renderer);
+  SDL_Delay(500);
+  SDL_RenderPresent(renderer);
 }
-// int main(int, char **) {
-//   // int width, height = 10;
-//   // bool leftMouseButtonDown = false;
-//
-//   bool quit = false;
-//
-//   SDL_Event event;
-//
-//   GameOfLife gm1(640, 480);
-//   gm1.randomInit();
-//
-//   // std::cout << "ENTER WIDTH,HEIGHT \n DEFAULT RANDOM CONFIG" << '\n';
-//
-//   // std::cin >> width;
-//   // std::cin >> height;
-//
-//   SDL_Init(SDL_INIT_VIDEO);
-//
-//   SDL_Window *window =
-//       SDL_CreateWindow("SDL2 Pixel Drawing", SDL_WINDOWPOS_UNDEFINED,
-//                        SDL_WINDOWPOS_UNDEFINED, 640, 480, 0);
-//
-//   SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
-//   SDL_Texture *texture = SDL_CreateTexture(renderer,
-//   SDL_PIXELFORMAT_ARGB8888,
-//                                            SDL_TEXTUREACCESS_STATIC, 640,
-//                                            480);
-//   Uint32 *pixels = new Uint32[640 * 480];
-//   memset(pixels, 0, 640 * 480 * sizeof(Uint32));
-//   // auto gd = gm1.get_conwayGrid();
-//
-//   while (!quit) {
-//     // SDL_WaitEvent(&event);
-//     SDL_UpdateTexture(texture, NULL, pixels, 640 * sizeof(Uint32));
-//
-//     switch (event.type) {
-//     case SDL_QUIT:
-//       quit = true;
-//       break;
-//     }
-//     SDL_RenderClear(renderer);
-//     SDL_RenderCopy(renderer, texture, NULL, NULL);
-//     SDL_RenderPresent(renderer);
-//   }
-//
-//   // while (!quit) {
-//   //
-//   //   SDL_WaitEvent(&event);
-//   //   SDL_UpdateTexture(texture, NULL, pixels, 640 * sizeof(Uint32));
-//   //   SDL_RenderClear(renderer);
-//   //   SDL_RenderCopy(renderer, texture, NULL, NULL);
-//   //   SDL_RenderPresent(renderer);
-//   //   /////// draw grid
-//   //   // conwayGrid gd = gm1.get_conwayGrid();
-//   //
-//   //   // for (int i = 0; i < 640; ++i) {
-//   //   //   for (int j = 0; j < 480; ++j) {
-//   //   //     auto tmp = GameOfLife::getState(gd->at(i).at(j));
-//   //   //     if (tmp) {
-//   //   //       pixels[j * 640 + i] = 255;
-//   //   //     } else {
-//   //   //       pixels[j * 640 + i] = 0;
-//   //   //     }
-//   //   //   }
-//   //   // }
-//   //   ///////
-//   //
-//   //   switch (event.type) {
-//   //
-//   //   case SDL_QUIT:
-//   //     quit = true;
-//   //     break;
-//   //     // case SDL_MOUSEBUTTONUP:
-//   //     //   if (event.button.button == SDL_BUTTON_LEFT)
-//   //     //     leftMouseButtonDown = false;
-//   //     //   break;
-//   //     // case SDL_MOUSEBUTTONDOWN:
-//   //     //   if (event.button.button == SDL_BUTTON_LEFT)
-//   //     //     leftMouseButtonDown = true;
-//   //     // case SDL_MOUSEMOTION:
-//   //     //   if (leftMouseButtonDown) {
-//   //     //     int mouseX = event.motion.x;
-//   //     //     int mouseY = event.motion.y;
-//   //     //     pixels[mouseY * 640 + mouseX] = 0;
-//   //   }
-//   //   break;
-//   // }
-//
-//   delete[] pixels;
-//   SDL_DestroyTexture(texture);
-//   SDL_DestroyRenderer(renderer);
-//   SDL_DestroyWindow(window);
-//   SDL_Quit();
-//   return 0;
-// }
+bool InitEverything() {
+  if (!InitSDL())
+    return false;
+
+  if (!CreateWindow())
+    return false;
+
+  if (!CreateRenderer())
+    return false;
+
+  SetupRenderer();
+
+  return true;
+}
+bool InitSDL() {
+  if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
+    std::cout << " Failed to initialize SDL : " << SDL_GetError() << std::endl;
+    return false;
+  }
+
+  return true;
+}
+bool CreateWindow() {
+  window = SDL_CreateWindow("Server", posX, posY, sizeX, sizeY, 0);
+
+  if (window == nullptr) {
+    std::cout << "Failed to create window : " << SDL_GetError();
+    return false;
+  }
+
+  return true;
+}
+bool CreateRenderer() {
+  renderer = SDL_CreateRenderer(window, -1, 0);
+
+  if (renderer == nullptr) {
+    std::cout << "Failed to create renderer : " << SDL_GetError();
+    return false;
+  }
+
+  return true;
+}
+void SetupRenderer() {
+  // Set size of renderer to the same as window
+  SDL_RenderSetLogicalSize(renderer, sizeX, sizeY);
+
+  // Set color of renderer to green
+  SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+}
+void RunGame() {
+  bool loop = true;
+  std::srand(std::time(NULL));
+  GameOfLife gm(10, 10);
+  gm.randomInit();
+  auto gd = gm.get_conwayGrid();
+
+  while (loop) {
+    SDL_Event event;
+    while (SDL_PollEvent(&event)) {
+      if (event.type == SDL_QUIT)
+        loop = false;
+    }
+    Render(*gd);
+    gm.iterateGrid();
+  }
+  // Render(*gd);
+
+  // Add a 16msec delay to make our game run at ~60 fps
+  SDL_Delay(16);
+  Cleanup();
+  SDL_Quit();
+}
