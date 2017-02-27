@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /Users/nevinzheng/conwayCPP
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/local/Cellar/cmake/3.7.2/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -79,15 +68,27 @@ install/fast: preinstall/fast
 	/usr/local/Cellar/cmake/3.7.2/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/local/Cellar/cmake/3.7.2/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
+# Special rule for the target install/local
+install/local/fast: install/local
 
-.PHONY : list_install_components/fast
+.PHONY : install/local/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/local/Cellar/cmake/3.7.2/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -110,6 +111,16 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -144,6 +155,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named tst
+
+# Build rule for target.
+tst: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tst
+.PHONY : tst
+
+# fast build rule for target.
+tst/fast:
+	$(MAKE) -f CMakeFiles/tst.dir/build.make CMakeFiles/tst.dir/build
+.PHONY : tst/fast
+
+#=============================================================================
+# Target rules for targets named t_GameOfLife
+
+# Build rule for target.
+t_GameOfLife: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 t_GameOfLife
+.PHONY : t_GameOfLife
+
+# fast build rule for target.
+t_GameOfLife/fast:
+	$(MAKE) -f CMakeFiles/t_GameOfLife.dir/build.make CMakeFiles/t_GameOfLife.dir/build
+.PHONY : t_GameOfLife/fast
+
+#=============================================================================
 # Target rules for targets named conwayCPP
 
 # Build rule for target.
@@ -156,18 +193,95 @@ conwayCPP/fast:
 	$(MAKE) -f src/CMakeFiles/conwayCPP.dir/build.make src/CMakeFiles/conwayCPP.dir/build
 .PHONY : conwayCPP/fast
 
+#=============================================================================
+# Target rules for targets named GameOfLife
+
+# Build rule for target.
+GameOfLife: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 GameOfLife
+.PHONY : GameOfLife
+
+# fast build rule for target.
+GameOfLife/fast:
+	$(MAKE) -f src/CMakeFiles/GameOfLife.dir/build.make src/CMakeFiles/GameOfLife.dir/build
+.PHONY : GameOfLife/fast
+
+u_tst/t_GameOfLife.o: u_tst/t_GameOfLife.cpp.o
+
+.PHONY : u_tst/t_GameOfLife.o
+
+# target to build an object file
+u_tst/t_GameOfLife.cpp.o:
+	$(MAKE) -f CMakeFiles/t_GameOfLife.dir/build.make CMakeFiles/t_GameOfLife.dir/u_tst/t_GameOfLife.cpp.o
+.PHONY : u_tst/t_GameOfLife.cpp.o
+
+u_tst/t_GameOfLife.i: u_tst/t_GameOfLife.cpp.i
+
+.PHONY : u_tst/t_GameOfLife.i
+
+# target to preprocess a source file
+u_tst/t_GameOfLife.cpp.i:
+	$(MAKE) -f CMakeFiles/t_GameOfLife.dir/build.make CMakeFiles/t_GameOfLife.dir/u_tst/t_GameOfLife.cpp.i
+.PHONY : u_tst/t_GameOfLife.cpp.i
+
+u_tst/t_GameOfLife.s: u_tst/t_GameOfLife.cpp.s
+
+.PHONY : u_tst/t_GameOfLife.s
+
+# target to generate assembly for a file
+u_tst/t_GameOfLife.cpp.s:
+	$(MAKE) -f CMakeFiles/t_GameOfLife.dir/build.make CMakeFiles/t_GameOfLife.dir/u_tst/t_GameOfLife.cpp.s
+.PHONY : u_tst/t_GameOfLife.cpp.s
+
+u_tst/tst.o: u_tst/tst.cpp.o
+
+.PHONY : u_tst/tst.o
+
+# target to build an object file
+u_tst/tst.cpp.o:
+	$(MAKE) -f CMakeFiles/tst.dir/build.make CMakeFiles/tst.dir/u_tst/tst.cpp.o
+.PHONY : u_tst/tst.cpp.o
+
+u_tst/tst.i: u_tst/tst.cpp.i
+
+.PHONY : u_tst/tst.i
+
+# target to preprocess a source file
+u_tst/tst.cpp.i:
+	$(MAKE) -f CMakeFiles/tst.dir/build.make CMakeFiles/tst.dir/u_tst/tst.cpp.i
+.PHONY : u_tst/tst.cpp.i
+
+u_tst/tst.s: u_tst/tst.cpp.s
+
+.PHONY : u_tst/tst.s
+
+# target to generate assembly for a file
+u_tst/tst.cpp.s:
+	$(MAKE) -f CMakeFiles/tst.dir/build.make CMakeFiles/tst.dir/u_tst/tst.cpp.s
+.PHONY : u_tst/tst.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/local"
 	@echo "... install"
-	@echo "... list_install_components"
+	@echo "... install/local"
+	@echo "... test"
+	@echo "... tst"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... list_install_components"
+	@echo "... t_GameOfLife"
 	@echo "... conwayCPP"
+	@echo "... GameOfLife"
+	@echo "... u_tst/t_GameOfLife.o"
+	@echo "... u_tst/t_GameOfLife.i"
+	@echo "... u_tst/t_GameOfLife.s"
+	@echo "... u_tst/tst.o"
+	@echo "... u_tst/tst.i"
+	@echo "... u_tst/tst.s"
 .PHONY : help
 
 
