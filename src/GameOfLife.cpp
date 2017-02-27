@@ -34,10 +34,9 @@ GameOfLife::GameOfLife(conwayGrid grid) {
 }
 std::ostream &operator<<(std::ostream &out, GameOfLife const &inst) {
   auto gd = inst.m_grid;
-  auto dims = std::make_pair(inst.m_rows, inst.m_cols);
 
-  for (int i = 0; i < dims.first; ++i) {
-    for (int j = 0; j < dims.second; ++j) {
+  for (int i = 0; i < inst.m_rows; ++i) {
+    for (int j = 0; j < inst.m_cols; ++j) {
       char t = (GameOfLife::getState((gd[i][j])) ? 'o' : '.');
       //   std::cout << (int)t << "\n";
       out << t << " ";

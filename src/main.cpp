@@ -118,9 +118,9 @@ int main(int argc, char *argv[]) {
   std::cout << "Working" << std::endl;
   std::cout << gd6 << std::endl;
 
-  for (int i = 0; i < 10; ++i) {
+  for (int i = 0; i < 10000; ++i) {
     gd6.iterateGrid();
-    std::cout << gd6 << std::endl;
+    // std::cout << gd6 << std::endl;
   }
 
   return 0;

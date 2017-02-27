@@ -31,7 +31,7 @@
 *.out
 *.app
 
-CMakeFiles/*
+
+bin/*
 
 #project bins
-conwayCPP
